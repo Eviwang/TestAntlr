@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Antlr4.Runtime.Misc;
-using System.Reflection.Emit;
+using TestAntlr;
 
-namespace TestAntlr
+namespace TestAntlr2
 {
-    //编译成方法
+    //解释型
     class Program
     {
-        static void Main(string[] args)
+        void Main(string[] args)
         {
             var code = "3 - (4)";
             var antlrInputStream = new AntlrInputStream(code);
@@ -21,15 +21,9 @@ namespace TestAntlr
             var parser = new Combined1Parser(cts);
 
 
-            var dynamicMethod = new DynamicMethod("test", typeof(int), Type.EmptyTypes);
-            var il = dynamicMethod.GetILGenerator();
 
-            var visitor = new MyVisitor(il);
-            visitor.Visit(parser.expression());
-            il.Emit(OpCodes.Ret);
-
-            var method = (Func<int>)dynamicMethod.CreateDelegate(typeof(Func<int>));
-            Console.WriteLine(method());
+            var visitor = new MyVisitor();
+            Console.WriteLine(visitor.Visit(parser.expression()));
 
             Console.ReadKey();
         }
@@ -37,13 +31,6 @@ namespace TestAntlr
 
     public class MyVisitor : Combined1BaseVisitor<int>
     {
-        private readonly ILGenerator _il;
-
-        public MyVisitor(ILGenerator il)
-        {
-            _il = il;
-        }
-
         public override int VisitBinaryExpression([NotNull] Combined1Parser.BinaryExpressionContext context)
         {
             var v1 = Visit(context.expression(0));
@@ -53,11 +40,9 @@ namespace TestAntlr
             switch (op)
             {
                 case "+":
-                    _il.Emit(OpCodes.Add);
-                    return 0;
+                    return v1 + v2;
                 case "-":
-                    _il.Emit(OpCodes.Sub);
-                    return 0;
+                    return v1 - v2;
             }
             throw new InvalidOperationException();
         }
@@ -69,8 +54,7 @@ namespace TestAntlr
 
         public override int VisitIntExpression([NotNull] Combined1Parser.IntExpressionContext context)
         {
-            _il.Emit(OpCodes.Ldc_I4, int.Parse(context.GetText()));
-            return 0;
+            return int.Parse(context.GetText());
         }
     }
 }

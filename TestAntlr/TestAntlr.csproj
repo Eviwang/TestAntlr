@@ -57,6 +57,7 @@
       <DependentUpon>Combined1.g4</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
+    <Compile Include="Program2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
