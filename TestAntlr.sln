@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAntlr", "TestAntlr\TestAntlr.csproj", "{064BF85F-5811-46B2-9C9A-CF1F6E4157CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "生成exe", "生成exe\生成exe.csproj", "{756FC590-490D-49D3-9D9E-62DD7522478F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{064BF85F-5811-46B2-9C9A-CF1F6E4157CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{064BF85F-5811-46B2-9C9A-CF1F6E4157CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{064BF85F-5811-46B2-9C9A-CF1F6E4157CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{756FC590-490D-49D3-9D9E-62DD7522478F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{756FC590-490D-49D3-9D9E-62DD7522478F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{756FC590-490D-49D3-9D9E-62DD7522478F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{756FC590-490D-49D3-9D9E-62DD7522478F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
